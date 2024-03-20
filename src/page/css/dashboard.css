@@ -1,0 +1,16 @@
+.a_link{
+  width: 20px;
+  height: 20px;
+  display: flex;
+}
+.img_like_dislike{
+  width: 100%;
+  height: 100%;
+}
+.img_like_dislike:hover{
+  transform: scale(1.2);
+}
+.post_img_dashboard{
+  width: 60%;
+  height: 60%;
+}

@@ -1,0 +1,36 @@
+[
+    {
+        "id": 1,  
+        "name":"Популярное",
+        "images":"https://i.pinimg.com/736x/27/d7/2a/27d72a71a53a9c5c2eb5e8e2413ecd8b.jpg"   
+    },
+    {
+        "id": 2,  
+        "name":"Популярное",
+        "images":"https://i.pinimg.com/736x/27/d7/2a/27d72a71a53a9c5c2eb5e8e2413ecd8b.jpg"  
+    },
+    {
+        "id": 3,  
+        "name":"Популярное", 
+        "images":"https://i.pinimg.com/736x/27/d7/2a/27d72a71a53a9c5c2eb5e8e2413ecd8b.jpg"  
+    },
+    {
+        "id": 4,  
+        "name":"Популярное", 
+        "images":"https://i.pinimg.com/736x/27/d7/2a/27d72a71a53a9c5c2eb5e8e2413ecd8b.jpg"  
+    },
+    {
+        "id": 5,  
+        "name":"Популярное", 
+        "images":"https://i.pinimg.com/736x/27/d7/2a/27d72a71a53a9c5c2eb5e8e2413ecd8b.jpg"  
+    },
+    {
+        "id": 6,  
+        "name":"Популярное", 
+        "images":"https://i.pinimg.com/736x/27/d7/2a/27d72a71a53a9c5c2eb5e8e2413ecd8b.jpg"  
+    },
+    {   "id": 7,
+        "name":"Популярное",  
+        "images":"https://i.pinimg.com/736x/27/d7/2a/27d72a71a53a9c5c2eb5e8e2413ecd8b.jpg"  
+    } 
+]

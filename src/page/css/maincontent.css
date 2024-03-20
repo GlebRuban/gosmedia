@@ -1,0 +1,22 @@
+
+
+.blogers{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.post_img{
+  width: 100%;
+  height: 100%;
+}
+
+.media_img{
+  width: 100%;
+  height: 100%;
+}
+
+.blog_logo{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}

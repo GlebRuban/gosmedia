@@ -1,0 +1,91 @@
+.canal{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.post_img{
+  width: 50%;
+  
+}
+.logo{
+  width: 100%;
+  height: 100%;
+}
+.popup{
+  width: 230px;
+  height: 220px;
+  border-radius: 10px;
+  background: #F2F2F2;
+  padding-left: 10%;
+  padding-top: 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  align-items: flex-start;
+}
+.user_popup{
+  width: 20%;
+  height: 100%;
+}
+.user_popup_one{
+  width: 27%;
+  height: 100%;
+}
+.user_glav{
+  width: 42%;
+  height: 100%;
+}
+.plus_popup{
+  width: 25px;
+  height: 25px;
+}
+.not_popup{
+  width: 25px;
+  height: 25px;
+}
+.name_link{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 170px;
+  height: 30px;
+  align-items: center;
+}
+.Input{
+  font-size: 20px;
+  width: 39%;
+  height: 25px;
+}
+.div_menu{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-direction: row;
+  justify-content: center;
+}
+.div-menu{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-direction: row;
+
+}
+.div-menu:hover{
+  background-color: rgb(230, 230, 230);
+  border-radius: 20px;
+  justify-content: center;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+a:hover{
+  color: blue;
+  text-decoration: underline;
+}
+.div-menu p {
+  font-size: 18px;
+  text-decoration: none;
+}
+
