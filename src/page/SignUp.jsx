@@ -1,147 +1,93 @@
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-const theme = createTheme();
+import { useForm } from 'react-hook-form';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
+import { Stack } from '@mui/material';
 
 
-export default function SignUp() {
-  let navigate = useNavigate();
-  const routeChange = () =>{
-    let path = `/SignIn`;
-    navigate(path);
-  }
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+const sxOptions = {
+  maxWidth: '500px',
+  margin: 'auto',
+  top:'200px',
+  position:'relative',
+  padding: '20px',
+  borderRadius: '8px',
+  boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+  backgroundColor: 'white',
+};
+
+const LoginForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const navigate = useNavigate();
+;
+
+  const onSubmit = (values) => {
+    localStorage.setItem('isAuth', String(true));
+    localStorage.setItem('user', JSON.stringify(values));
+    navigate('/');
   };
 
+  const userNameControl = register('username', {
+    required: 'Введите имя пользователя',
+    minLength: {
+      value: 6,
+      message: 'Не менее шести символов',
+    },
+  });
+
+  const userPasswordControl = register('password', {
+    required: 'Введите пароль',
+    minLength: {
+      value: 3,
+      message: 'Не менее шести символов',
+    },
+  });
+
+
   return <>
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
-            </Grid>
-            <a href="/">
-              <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onClick={routeChange}
-              >
-              Sign Up
-              </Button>
-            </a>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/SignIn" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-        <Copyright sx={{ mt: 5 }} />
-      </Container>
-    </ThemeProvider>
+    <Box
+      component="form"
+      onSubmit={handleSubmit(onSubmit)}
+      sx={sxOptions}
+    >
+      <Typography variant="h5" component="div" sx={{ mb: 2 }}>Создать аккаунт</Typography>
+
+      <TextField
+        fullWidth
+        label="Имя пользователя"
+        {...userNameControl}
+        error={Boolean(errors.username)}
+        helperText={errors.username?.message}
+        margin="normal"
+      />
+
+      <TextField
+        fullWidth
+        type="password"
+        label="Пароль"
+        {...userPasswordControl}
+        error={Boolean(errors.password)}
+        helperText={errors.password?.message}
+        margin="normal"
+        sx={{ mt: 2 }}
+      />
+
+      <Stack direction="row" justifyContent="space-between" alignItems="center" paddingTop={2}>
+        <Button type="submit" variant="contained" color="primary">создать аккаунт</Button>
+        <Button variant="outlined" onClick={() => navigate('/sign-in')}>Уже есть аккаунт</Button>
+      </Stack>
+    </Box>
   </>
-}
+};
+
+export default LoginForm;

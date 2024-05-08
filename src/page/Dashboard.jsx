@@ -1,158 +1,197 @@
 // import components 
-import Container from '@mui/material/Container';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
-import { styled } from '@mui/material/styles';
-import Avatar from '@mui/material/Avatar';
-import {Line} from 'react-chartjs-2'
-import Box from '@mui/material/Box'; 
-import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js';
-import { Grid } from '@mui/material';
-import Posts from '../posts.json'; 
-import mediaTreds from '../mediaTreds.json' 
+import { Card, CardContent, Typography, Divider, ImageList, ImageListItem, Container } from '@mui/material';
+import Posts from '../posts.json' 
 // import model and css
-import Header from './Header'; 
 import './css/dashboard.css';
 // Img 
-import avatar from '../images/avatar.jpg';
 import like from '../images/like.jpg';
 import dislike from '../images/dislike.jpg';
+import useDeviceDetect from './useDeviceDetect';
+import { BrowserView, MobileView } from 'react-device-detect';
 
 
 
-function createData( email, nickName, comment,  date) {
-  return {email, nickName, comment, date};
-}
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
-const rows = [
-  createData(
-    'ivan.ivan@mail.ru', 
-    'ivan.StrogoOper', 
-    'You cool man i love you!', 
-    '19.11.2019'
-    ),
-  createData(
-    'ivan.ivan@mail.ru',
-    'ivan.Oper',
-    'Cool new post',
-    '15.01.2020'
-    ),
-  createData(
-    'ivan.Ivan@mail.ru',
-    'StrogoOper',
-    'Cool new video',
-    '12.04.2021'
-    ),
-  createData(
-    'ivan.ivan@mail.ru',
-    'ivan.Strogo',
-    'Nice content',
-    '20.05.2024'
-    ),
-  createData(
-    'ivan.ivan@mail.ru',
-    'ivan',
-    'You cool',
-    '17.06.2023'
-    ),
-];
-
-ChartJS.register(
-  LineElement, CategoryScale, LinearScale, PointElement
-)
-
-export default function Dashboard(){
-  const datachart = {
-    labels:["May","April","May","June","July"], 
-    datasets:[12,20,15,16,30,10]
-  }
-  const options = {}
-
+export default function Dashboard() {
+  const { isMobile } = useDeviceDetect();
   return<>
-    <Header/>
-    <Container maxWidth="xl">
-      <Box sx={{ flexGrow: 1 }} paddingTop={"10%"} paddingBottom={"7%"}>
-        <Grid container spacing={2} columns={16}>
-          <Grid item xs={8}>
-            <Stack spacing={4} direction="column" justifyContent="center" alignItems="center" maxWidth="60%">
-              {
-                mediaTreds.map(media => {
-                  return(
-                    <Item key={media.id}>
-                      <img src={media.images} alt="post_img" className='post_img_dashboard' />
-                      <h4>{media.name}</h4>
-                    </Item>
-                  )
-                } )
-              }
-            </Stack>
-          </Grid>
-          <Grid item xs={8}>
-            <Stack>
-              <Item><Line data={datachart} options={options}></Line></Item>
-            </Stack>
-          </Grid>
-        </Grid>
-      </Box>
-    </Container>
-    <Container maxWidth="xl" paddingTop={"50px"}>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 500 }} size="medium">
-          <TableHead>
-            <TableRow>
-            <TableCell align="center">Avatar</TableCell>
-              <TableCell align="center">Email</TableCell>
-              <TableCell align="center">NickName</TableCell>
-              <TableCell align="center">Comment</TableCell>
-              <TableCell align="center">Date</TableCell>
-              <TableCell align="center">Like & Dislike</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell align="center">
-                  <Stack direction='row' justifyContent='flex-start' alignItems="center" spacing={2} paddingLeft={'30%'}>
-                    <Avatar src={avatar} />
-                  </Stack>
-                </TableCell>
-                <TableCell align="center">{row.email}</TableCell>
-                <TableCell align="center">{row.nickName}</TableCell>
-                <TableCell align="center">{row.comment}</TableCell>
-                <TableCell align="center">{row.date}</TableCell>
-                <TableCell align="left">
-                  <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={2} maxWidth={"50px"} paddingLeft={'34%'}>
-                    <Item>
-                      <a href='#' className='a_link'>
-                        <img src={like}  alt='like' className='img_like_dislike'/>
-                      </a>
-                    </Item>
-                    <Item>
-                      <a href='#' className='a_link'>
-                        <img src={dislike}  alt='like' className='img_like_dislike'/>
-                      </a>
-                      </Item>
-                  </Stack>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Container>
+    {!isMobile ? 
+    <BrowserView>
+      <Stack direction={'row'} paddingTop={5} justifyContent={'flex-start'} gap={10}>
+        <Card sx={{ minWidth: 275 }}>
+          <CardContent>
+            <Typography variant="h5" component="div" color="text.secondary" gutterBottom>
+              Эффективность последнего видео
+            </Typography>
+            <Typography color="text.secondary">
+              <Stack direction={'row'} paddingTop={1} justifyContent={'space-between'}>
+                <Typography fontWeight={'bold'}>Просмотры</Typography>
+                <Typography>23 303</Typography>
+              </Stack>
+            </Typography>
+            <Typography color="text.secondary">
+              <Stack direction={'row'} paddingTop={1} justifyContent={'space-between'}>
+                <Typography fontWeight={'bold'}>Средняя продолжительность просмотра</Typography>
+                <Typography>01:20</Typography>
+              </Stack>
+
+              <Stack direction={'row'} paddingTop={1} justifyContent={'space-between'} alignItems={'center'}>
+                <ImageList sx={{ width: 30, height: 30 }} cols={1} rowHeight={30} style={{overflow: 'hidden'}}>
+                  <ImageListItem>
+                    <img
+                      src={like}
+                      loading="lazy"
+                    />
+                  </ImageListItem>
+                </ImageList>
+                <Typography>1 294</Typography>
+              </Stack>
+
+              <Stack direction={'row'} paddingTop={1} justifyContent={'space-between'} alignItems={'center'}>
+                <ImageList sx={{ width: 30, height: 30 }} cols={1} rowHeight={30} style={{overflow: 'hidden'}}>
+                  <ImageListItem>
+                    <img
+                      src={dislike}
+                      loading="lazy"
+                    />
+                  </ImageListItem>
+                </ImageList>
+                <Typography>12</Typography>
+              </Stack>
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card sx={{ minWidth: 275 }}>
+          <CardContent>
+            <Typography variant="h5" component="div" color="text.secondary" gutterBottom>
+              Аналитика по каналу
+            </Typography>
+            <Typography color="text.secondary">
+              <Stack direction={'column'} paddingTop={1} justifyContent={'space-between'}>
+                <Typography>Подписчики</Typography>
+                <Typography fontSize={28} fontWeight={'bold'}>10</Typography>
+              </Stack>
+            </Typography>
+            <Divider />
+            <Typography variant="h5" component="div" color="text.secondary" paddingTop={2}>
+              Сводная статистика
+            </Typography>
+            <Typography color="text.secondary">Последнии 28 дней</Typography>
+            <Typography color="text.secondary">
+              <Stack direction={'row'} paddingTop={1} justifyContent={'space-between'}>
+                <Typography fontWeight={'bold'}>Просмотры</Typography>
+                <Typography>134</Typography>
+              </Stack>
+            </Typography>
+            <Typography color="text.secondary">
+              <Stack direction={'row'} paddingTop={1} justifyContent={'space-between'}>
+                <Typography fontWeight={'bold'}>Время просмотра (часы)</Typography>
+                <Typography>23</Typography>
+              </Stack>
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card sx={{ minWidth: 275 }}>
+          <CardContent>
+            <Typography variant="h5" component="div" color="text.secondary" gutterBottom>
+              Мои посты
+            </Typography>
+            <Typography fontWeight={'bold'}>Просмотры</Typography>
+            <Typography>134</Typography>
+          </CardContent>
+        </Card>
+        <Card sx={{ minWidth: 275 }}>
+          <CardContent>
+            <Typography variant="h5" component="div" color="text.secondary" gutterBottom>
+              Мои видео
+            </Typography>
+            <Typography fontWeight={'bold'}>Время просмотра (часы)</Typography>
+            <Typography>10</Typography>
+          </CardContent>
+        </Card>
+      </Stack>
+    </BrowserView> 
+    : 
+    <MobileView>
+      <Stack direction={'column'} paddingTop={10} gap="20px">
+        <Card>
+          <CardContent>
+            <Typography variant="h5" component="div" color="text.secondary" gutterBottom>
+              Эффективность последнего видео
+            </Typography>
+            <Typography color="text.secondary">
+              <Stack direction={'row'} paddingTop={1} justifyContent={'space-between'}>
+                <Typography fontWeight={'bold'}>Просмотры</Typography>
+                <Typography>23 303</Typography>
+              </Stack>
+            </Typography>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent>
+            <Typography variant="h5" component="div" color="text.secondary" gutterBottom>
+              Аналитика по каналу
+            </Typography>
+            <Typography color="text.secondary">
+              <Stack direction={'column'} paddingTop={1} justifyContent={'space-between'}>
+                <Typography>Подписчики</Typography>
+                <Typography fontSize={28} fontWeight={'bold'}>10</Typography>
+              </Stack>
+            </Typography>
+            <Divider />
+            <Typography variant="h5" component="div" color="text.secondary" paddingTop={2}>
+              Сводная статистика
+            </Typography>
+            <Typography color="text.secondary">Последнии 28 дней</Typography>
+            <Typography color="text.secondary">
+              <Stack direction={'row'} paddingTop={1} justifyContent={'space-between'}>
+                <Typography fontWeight={'bold'}>Просмотры</Typography>
+                <Typography>134</Typography>
+              </Stack>
+            </Typography>
+            <Typography color="text.secondary">
+              <Stack direction={'row'} paddingTop={1} justifyContent={'space-between'}>
+                <Typography fontWeight={'bold'}>Время просмотра (часы)</Typography>
+                <Typography>23</Typography>
+              </Stack>
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent>
+            <Typography variant="h5" component="div" color="text.secondary" gutterBottom>
+              Мои посты
+              <Stack direction="column" justifyContent="center" alignItems="center">
+                {
+                  Posts.map(post => {
+                    return(
+                      <>
+                        <img src={post.images} alt="post_img" className='post_img' />
+                        <Typography variant="h11">{post.name}</Typography>
+                      </>
+                    )
+                  } )
+                }
+              </Stack>
+            </Typography>
+            <Typography fontWeight={'bold'}>Просмотры</Typography>
+            <Typography>134</Typography>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent>
+            <Typography variant="h5" component="div" color="text.secondary" gutterBottom>
+              Мои видео
+            </Typography>
+            <Typography fontWeight={'bold'}>Время просмотра (часы)</Typography>
+            <Typography>10</Typography>
+          </CardContent>
+        </Card>
+        
+      </Stack>
+    </MobileView>
+    } 
   </>
 }

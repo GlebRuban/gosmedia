@@ -1,15 +1,15 @@
+
 .canal{
   width: 60px;
   height: 60px;
   border-radius: 50%;
 }
-.post_img{
-  width: 50%;
-  
-}
 .logo{
   width: 100%;
   height: 100%;
+}
+.logoImg{
+  width: 100%;
 }
 .popup{
   width: 230px;
