@@ -179,7 +179,6 @@ export default function Dashboard() {
             <Typography>134</Typography>
           </CardContent>
         </Card>
-
         <Card>
           <CardContent>
             <Typography variant="h5" component="div" color="text.secondary" gutterBottom>

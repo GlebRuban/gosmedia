@@ -23,7 +23,7 @@ export default function Header() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user') || '{}'));
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
-  const [showNavExternal, setShowNavExternal] = useState(false);
+  const [openNavExternal, setOpenNavExternal] = useState(false);
 
   function toogleMenu(event) {
     setAnchorEl(event.currentTarget);
@@ -32,7 +32,7 @@ export default function Header() {
     localStorage.setItem('isAuth', String(false));
     navigate('/sign-in');
   }
-
+  
   return <>
   {!isMobile ? 
     <BrowserView>
@@ -80,50 +80,77 @@ export default function Header() {
     </BrowserView> 
     : 
     <MobileView>
-      <MDBNavbar>
-        <MDBContainer fluid>
-          <MDBNavbarToggler type='button' data-target='#navbarToggleExternalContent' aria-controls='navbarToggleExternalContent' aria-expanded='false' aria-label='Toggle navigation'
-            onClick={() => setShowNavExternal(!showNavExternal)}>
-            <MDBIcon icon='bars' fas />
-          </MDBNavbarToggler>
-        </MDBContainer>
-      </MDBNavbar>
-      <MDBCollapse show={showNavExternal}>
+      <MDBCollapse open={openNavExternal}>
         <div className='bg-light shadow-3 p-4'>
           <Container  maxWidth="xs" padding="10px">
-            <Stack direction="row" justifyContent="center" alignItems="flex-start" spacing={2}>
-              <a href='/' style={{display:"flex", top:"16px", position:"relative"}}>
+            <Stack direction="row" alignItems="flex-start" spacing={4} justifyContent="space-between">
+              <a href='/' style={{display:"flex", top:"16px", position:"relative", left:"14.5%;"}}>
                 <img src={logo} alt="Logo" className='logoImg' />
               </a>
-              <TextField id="standard-basic" label="Поиск" variant="standard" className='Input' />
+              <TextField id="standard-basic" label="Поиск" variant="standard" className='Input' style={{width:"110px"}}/>
               {
                 !isAuth
                   ? <Button variant="outlined" onClick={() => navigate('/sign-in')}>Войти</Button>
                   : 
-                    <>
-                      <a id="dropdown-basic" style={{fontSize: 2, position:'relative', top:"20px"}}>
-                        <Icon>add_circle</Icon>
-                      </a>
-                      <Button id="user-menu" onClick={toogleMenu}><span style={{fontSize:"15px"}}>{ user.username }</span></Button>
-                      <Menu
-                        id="user-menu"
-                        anchorEl={anchorEl}
-                        open={Boolean(anchorEl)}
-                        onClose={() => setAnchorEl(null)}
-                      >
-                      <MenuItem onClick={() => navigate(`/user/${user.username}`)}>
-                        <MDBBtn block className='border-bottom m-0' color='link'>Профиль</MDBBtn>
-                      </MenuItem>
-                      <MenuItem onClick={logout}>
-                        <MDBBtn block className='border-bottom m-0' color='link'>Выйти</MDBBtn>
-                      </MenuItem>
-                      </Menu>
-                  </>
+                <>
+                  <a id="dropdown-basic" 
+                  style=
+                  {
+                    {
+                      fontSize: 2, 
+                      position:'relative', 
+                      top:"20px",
+                      left:"15%"
+                    }
                   }
-              </Stack>
-            </Container>
-          </div>
+                  >
+                    <Icon>add_circle</Icon>
+                  </a>
+                  <Button id="user-menu" onClick={toogleMenu} style={{left:"6%"}}>
+                    <span 
+                    style={
+                      {
+                        fontSize:"11.8px", 
+                        top:"6px", 
+                        position:"relative"
+                      }
+                    }>
+                      { user.username }
+                    </span>
+                  </Button>
+                  <Menu
+                      id="user-menu"
+                      anchorEl={anchorEl}
+                      open={Boolean(anchorEl)}
+                      onClose={() => setAnchorEl(null)}
+                    >
+                    <MenuItem onClick={() => navigate(`/user/${user.username}`)}>
+                      <MDBBtn block className='border-bottom m-0' color='link'>Профиль</MDBBtn>
+                    </MenuItem>
+                    <MenuItem onClick={logout}>
+                      <MDBBtn block className='border-bottom m-0' color='link'>Выйти</MDBBtn>
+                    </MenuItem>
+                  </Menu>
+                </>
+                }
+            </Stack>
+          </Container>
+        </div> 
       </MDBCollapse>
+      <MDBNavbar dark bgColor='dark'>
+        <MDBContainer fluid>
+          <MDBNavbarToggler
+            type='button'
+            data-target='#navbarToggleExternalContent'
+            aria-controls='navbarToggleExternalContent'
+            aria-expanded='false'
+            aria-label='Toggle navigation'
+            onClick={() => setOpenNavExternal(!openNavExternal)}
+          >
+            <MDBIcon icon='bars' fas />
+          </MDBNavbarToggler>
+        </MDBContainer>
+      </MDBNavbar>
     </MobileView>
   }
   </>
