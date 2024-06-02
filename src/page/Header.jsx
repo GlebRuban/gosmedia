@@ -25,6 +25,13 @@ export default function Header() {
   const navigate = useNavigate();
   const [openNavExternal, setOpenNavExternal] = useState(false);
 
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+
+  const DropDown = () => {
+    setIsOpenMenu(!isOpenMenu);
+  };
+  console.log(DropDown);
+
   function toogleMenu(event) {
     setAnchorEl(event.currentTarget);
   }
@@ -60,9 +67,10 @@ export default function Header() {
                 ? <Button variant="outlined" onClick={() => navigate('/sign-in')}>Войти</Button>
                 : 
                   <>
-                    <a id="dropdown-basic" style={{fontSize: 23, position:'relative', left:'12%'}}>
-                      <Icon sx={{ fontSize: 23, position:'relative', left:'12%'}}>add_circle</Icon>
-                    </a>
+                    <a onClick={DropDown} href='#' className='dropdown-toggle' style={{position:'relative',left:"10%"}}><Icon>add_circle</Icon></a>
+                    {isOpenMenu && (
+                    <ul className="dropdown-menu"> <a href='/video'>Видео</a><a href='/post'>Пост</a></ul>
+                    )}
                     <Button id="user-menu" onClick={toogleMenu}>{ user.username }</Button>
                     <Menu
                       id="user-menu"
@@ -93,31 +101,11 @@ export default function Header() {
                   ? <Button variant="outlined" onClick={() => navigate('/sign-in')}>Войти</Button>
                   : 
                 <>
-                  <a id="dropdown-basic" 
-                  style=
-                  {
-                    {
-                      fontSize: 2, 
-                      position:'relative', 
-                      top:"20px",
-                      left:"15%"
-                    }
-                  }
-                  >
-                    <Icon>add_circle</Icon>
-                  </a>
-                  <Button id="user-menu" onClick={toogleMenu} style={{left:"6%"}}>
-                    <span 
-                    style={
-                      {
-                        fontSize:"11.8px", 
-                        top:"6px", 
-                        position:"relative"
-                      }
-                    }>
-                      { user.username }
-                    </span>
-                  </Button>
+                  <a onClick={DropDown} href='#' className='dropdown-toggle' style={{fontSize: 2, position:'relative', top:"20px",left:"15%"}}><Icon>add_circle</Icon></a>
+                  {isOpenMenu && (
+                    <ul className="dropdown-menu"> <a href='/video'>Видео</a><a>Пост</a></ul>
+                    )}
+                  <Button id="user-menu" onClick={toogleMenu} style={{left:"6%"}}><span style={{ fontSize:"11.8px", top:"6px", position:"relative"}}>{ user.username }</span></Button>
                   <Menu
                       id="user-menu"
                       anchorEl={anchorEl}
@@ -125,10 +113,10 @@ export default function Header() {
                       onClose={() => setAnchorEl(null)}
                     >
                     <MenuItem onClick={() => navigate(`/user/${user.username}`)}>
-                      <MDBBtn block className='border-bottom m-0' color='link'>Профиль</MDBBtn>
+                      <MDBBtn style={{position:"relative", left:"1%"}} block className='border-bottom m-0' color='link'>Профиль</MDBBtn>
                     </MenuItem>
                     <MenuItem onClick={logout}>
-                      <MDBBtn block className='border-bottom m-0' color='link'>Выйти</MDBBtn>
+                      <MDBBtn style={{position:"relative", left:"1%"}} block className='border-bottom m-0' color='link'>Выйти</MDBBtn>
                     </MenuItem>
                   </Menu>
                 </>

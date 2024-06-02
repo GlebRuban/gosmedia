@@ -3,7 +3,6 @@ import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import { FixedSizeList } from 'react-window';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
@@ -26,17 +25,6 @@ import TG from '../images/тг.png'
 import logo from '../images/main-logo.png'; 
 import { Navigate } from "react-router-dom";
 import { useState } from 'react';
-
-function renderRow(props) {
-  const { index, style } = props;
-  return (
-    <ListItem style={style} key={index} component="div" disablePadding>
-      <ListItemButton>
-        <ListItemText primary={'Объявление пользователей'}/>
-      </ListItemButton>
-    </ListItem>
-  );
-}
 
 export default function MainContent() {
   const [isAuth, setIsAuth] = useState(Boolean(localStorage.getItem('user')));
@@ -81,13 +69,13 @@ export default function MainContent() {
               } )
             }
           </Stack>
-          <Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={2} paddingTop={"5%"} maxWidth={"20%"}>
+          <Stack direction="column" justifyContent="center" alignItems="flex-start" spacing={2} paddingTop={"5%"} maxWidth={"13%"}>
             {
               mediaTreds.map(media=> {
                 return(
                   <Item>
                     <img src={media.images} alt="post_img" className='media_img' />
-                    <h2>{media.name}</h2>
+                    <h2 style={{fontSize:"20px"}}>{media.name}</h2>
                   </Item>
                 )
               })
@@ -95,9 +83,6 @@ export default function MainContent() {
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DateCalendar />
             </LocalizationProvider>
-            <FixedSizeList height={400} width={298} itemSize={40} itemCount={100} overscanCount={5}>
-              {renderRow}
-            </FixedSizeList>
           </Stack>
         </Grid>
         <Container maxWidth="xl" >
