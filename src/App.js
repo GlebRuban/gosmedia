@@ -21,6 +21,7 @@ function App() {
       <Route path="/sign-in" element={<SignIn/>}></Route>
       <Route path="/sign-up" element={<SignUp/>}></Route>
       <Route path="/video" element={<DownloadVideo/>}></Route>
+      <Route path="/mediaplay" element={<DownloadVideo/>}></Route>
       <Route path="/post" element={<DownloadPost/>}></Route>
       <Route path="/user/:username" element={<CommonLayout><Dashboard/></CommonLayout>}></Route>
     </Routes>
