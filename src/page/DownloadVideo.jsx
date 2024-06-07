@@ -28,7 +28,7 @@ export default function DownloadVideo() {
           <div class="dropzone">
             {video && (
               <video controls style={{ width: '100%', height: '100%' }}>
-                <source src={video} type="video/mp4" />
+                <source src={video} type="video/mp4" className='source_video' />
               </video>
             )}
             <input type="file" onChange={onVideoChange} accept="video/*" class="upload-input" />
