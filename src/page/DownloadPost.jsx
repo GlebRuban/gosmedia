@@ -28,7 +28,7 @@ export default function DownloadPost() {
           </div>
           <div class="dropzone">
             <img class="upload-icon" src={image} style={{ width: '100%', height: '100%' }} />
-            <input type="file" accept="image/png, image/jpeg, image/svg" class="upload-input" onChange={onImageChange} />
+            <input type="file" accept="image/png, image/jpeg, image/svg" class="upload-input_post" onChange={onImageChange} />
           </div>
           <div style={{display:"flex",flexDirection:"column", width:"100%"}}>
             <Typography variant='h8'>Название</Typography>

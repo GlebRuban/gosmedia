@@ -53,14 +53,20 @@ h1{
   width: 100%;
   height: 250px;
 }
-
 .upload-input {
   position: relative;
-  top: -251px;
   left: 0;
   width: 100%;
   height: 250px;
   opacity: 0;
+}
+.upload-input_post {
+  position: relative;
+  left: 0;
+  width: 100%;
+  height: 250px;
+  opacity: 0;
+  top: -251px;
 }
 
 .button_forms {
