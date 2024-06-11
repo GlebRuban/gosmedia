@@ -9,6 +9,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Icon from '@mui/material/Icon';
 import useDeviceDetect from './useDeviceDetect';
 import { MDBContainer, MDBCollapse, MDBNavbar, MDBNavbarToggler, MDBIcon, MDBBtn } from 'mdb-react-ui-kit';
+import { MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem } from 'mdb-react-ui-kit';
+
 import './css/header.css'
 import './css/adaptiv.css'
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
@@ -39,7 +41,11 @@ export default function Header() {
     localStorage.setItem('isAuth', String(false));
     navigate('/sign-in');
   }
-  
+  const options = [
+    'one', 'two', 'three'
+  ];
+  const defaultOption = options[0];
+
   return <>
   {!isMobile ? 
     <BrowserView>
@@ -67,7 +73,13 @@ export default function Header() {
                 ? <Button variant="outlined" onClick={() => navigate('/sign-in')}>Войти</Button>
                 : 
                   <>
-                    <a onClick={DropDown} href='#' className='dropdown-toggle' style={{position:'relative',left:"10%"}}><Icon>add_circle</Icon></a>
+                    <MDBDropdown style={{position:"relative", left:"8%"}}>
+                      <MDBDropdownToggle>Выложить контент</MDBDropdownToggle>
+                      <MDBDropdownMenu>
+                        <MDBDropdownItem><a href="/post">Пост</a></MDBDropdownItem>
+                        <MDBDropdownItem><a href="/video">Видео</a></MDBDropdownItem>
+                      </MDBDropdownMenu>
+                    </MDBDropdown>
                     {isOpenMenu && (
                     <ul className="dropdown-menu"> <a href='/video'>Видео</a><a href='/post'>Пост</a></ul>
                     )}
@@ -92,16 +104,22 @@ export default function Header() {
         <div className='bg-light shadow-3 p-4'>
           <Container  maxWidth="xs" padding="10px">
             <Stack direction="row" alignItems="flex-start" spacing={4} justifyContent="space-between">
-              <a href='/' style={{display:"flex", top:"16px", position:"relative", left:"14.5%;"}}>
-                <img src={logo} alt="Logo" className='logoImg' />
-              </a>
+            <a href='/' >
+              <img src={logo} alt="Logo" style={{width:"100px"}}/>
+            </a>
               <TextField id="standard-basic" label="Поиск" variant="standard" className='Input' style={{width:"110px"}}/>
               {
                 !isAuth
                   ? <Button variant="outlined" onClick={() => navigate('/sign-in')}>Войти</Button>
                   : 
                 <>
-                  <a onClick={DropDown} href='#' className='dropdown-toggle' style={{fontSize: 2, position:'relative', top:"20px",left:"15%"}}><Icon>add_circle</Icon></a>
+                  <MDBDropdown style={{position:"relative", left:"8%", }}>
+                      <MDBDropdownToggle>Выложить контент</MDBDropdownToggle>
+                      <MDBDropdownMenu>
+                        <MDBDropdownItem><a href="/post"  style={{fontSize:"20px"}}>Пост</a></MDBDropdownItem>
+                        <MDBDropdownItem><a href="/video" style={{fontSize:"20px"}}>Видео</a></MDBDropdownItem>
+                      </MDBDropdownMenu>
+                    </MDBDropdown>
                   {isOpenMenu && (
                     <ul className="dropdown-menu"> <a href='/video'>Видео</a><a>Пост</a></ul>
                     )}

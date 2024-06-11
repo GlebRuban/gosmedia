@@ -45,21 +45,21 @@ export default function DownloadPost() {
   </BrowserView> :
   <MobileView>
     <Stack direction="column" justifyContent="center" alignItems="center" spacing={2} padding={"5%"}>
-      <div className='div-forms'>
+      <div className='div-forms_mobile'>
         <form action="" method="post" className='forms'>
           <div class="title">
-            <h1 className='h1'>Drop file to upload</h1>
+            <h1 className='h1'>Drop image from post</h1>
           </div>
           <div class="dropzone">
-            <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" />
-            <input type="file" accept="image/png, image/jpeg, image/svg" class="upload-input"  />
+            <img class="upload-icon" src={image} />
+            <input type="file" accept="image/png, image/jpeg, image/svg" class="upload-input_mobile_post" onChange={onImageChange}  />
           </div>
-          <div className='div-name-video'>
+          <div className='div-name-post'>
             <Typography variant='h8'>Название</Typography>
             <input  type='text' className='name_video' />
           </div>
-          <div className='div-name-video'>
-            <Typography style={{position:"relative", left:"-3%"}} variant='h8'>Описание</Typography>
+          <div className='div-name-post'>
+            <Typography className='desc' variant='h8'>Описание</Typography>
             <textarea type="text" className='description' />
           </div>
           <button type="submit" className="button_from" name="uploadbutton">Upload file</button>

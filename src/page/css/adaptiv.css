@@ -1,8 +1,30 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
 
 @media (min-width: 300px){
-    .logoImg{
-      width: 100px;
+  .logoImg{
+    width: 100px;
+  }
+  .div-forms_mobile{
+    width: 100%;
+  }
+  .desc{
+    position: relative;
+    left: 0%;
+    }
+    .upload-input_mobile{
+      position: relative;
+      left: 0;
+      width: 100%;
+      height: 250px;
+      opacity: 0;
+    }
+    .upload-input_mobile_post{
+      position: relative;
+      left: 0;
+      width: 100%;
+      height: 250px;
+      opacity: 0;
+      top: -251px;
     }
     /* 
 
