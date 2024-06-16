@@ -114,3 +114,7 @@
   left: -3%
 } */
 }
+
+input[type="file"] {
+  display: none;
+}

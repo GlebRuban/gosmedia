@@ -100,3 +100,8 @@ a:hover{
 .dropdown-toggle{
   text-decoration: none;
 }
+
+.add-post, .add-video {
+  padding: 10px 25px;
+  width: auto;
+}

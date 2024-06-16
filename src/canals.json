@@ -1,29 +1,32 @@
 [
     {
         "id": 1,  
-        "images":"https://dom2.blog/uploads/posts/2017-10/1507810574_tnt.jpg"   
+        "images":"https://dom2.blog/uploads/posts/2017-10/1507810574_tnt.jpg",
+        "url": "https://tnt-online.ru/live"
     },
     {
         "id": 2,  
-        "images":"https://dom2.blog/uploads/posts/2017-10/1507810574_tnt.jpg"   
+        "images":"https://alllogos.ru/images/logotip-perviy-kanal-hd.png",
+        "url": "https://www.1tv.ru/live"   
     },
     {
         "id": 3,  
-        "images":"https://dom2.blog/uploads/posts/2017-10/1507810574_tnt.jpg"   
+        "images":"https://w7.pngwing.com/pngs/566/853/png-transparent-ntv-hd-logo.png",
+        "url": "https://www.ntv.ru/air/ntv/"   
     },
     {
         "id": 4,  
-        "images":"https://dom2.blog/uploads/posts/2017-10/1507810574_tnt.jpg"   
+        "images":"https://upload.wikimedia.org/wikipedia/commons/9/95/Zvezda_logo.svg",
+        "url": "https://tvzvezda.ru/video"
     },
     {
         "id": 5,  
-        "images":"https://dom2.blog/uploads/posts/2017-10/1507810574_tnt.jpg"   
+        "images":"https://tv.akado.ru/upload/resize_cache/akado_images_bitrix/07b/160_160_1/35691ca487422e0de543aad08e75a023.png",
+        "url": "https://smotrim.ru/live/21 "   
     },
     {
         "id": 6,  
-        "images":"https://dom2.blog/uploads/posts/2017-10/1507810574_tnt.jpg"   
-    },
-    {   "id": 7,  
-        "images":"https://dom2.blog/uploads/posts/2017-10/1507810574_tnt.jpg"   
-    } 
+        "images":"https://png.klev.club/uploads/posts/2024-06/png-klev-club-qfm6-p-logotip-rossiya-1-png-12.png",
+        "url": "https://smotrim.ru/channel/1"   
+    }
 ]
